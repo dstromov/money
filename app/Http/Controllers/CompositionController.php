@@ -31,11 +31,6 @@ class CompositionController extends Controller
         return redirect()->route('showCurrencyWithDenominations', ['currency' => $currency->id]);
     }
 
-    // public function show(Currency $currency)
-    // {
-    //     return CompositionService::show($currency);
-    // }
-
     public function update(UpdateCompositionRequest $request)
     {
         $validatedData = $request->validated();

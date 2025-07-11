@@ -36,26 +36,6 @@ class CompositionService
         return  Currency::find($currencyId);
     }
     
-    // public static function show(Currency $currency)
-    // {
-    //     $denominations = $currency->denominations;
-        
-    //     $denominationsIds = [];
-    //     foreach ($denominations as $value) {
-    //         $denominationsIds[] = $value->id;
-    //     }
-
-    //     $compositionsWithDenominations = DB::table('denominations')
-    //         ->join('compositions', 'compositions.denomination_id', '=', 'denominations.id')
-    //         ->whereIn('denomination_id', $denominationsIds)
-    //         ->whereNull('compositions.deleted_at')
-    //         ->orderBy('ratio', 'desc')
-    //         ->orderBy('value', 'desc')
-    //         ->get();
-
-    //     return ['data' => $compositionsWithDenominations];
-    // }
-
     public static function update(Array $validatedData)
     {
         $composition = Composition::findOrFail($validatedData['id']);
