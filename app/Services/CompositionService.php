@@ -11,6 +11,10 @@ class CompositionService
 {
     public static function store(Array $validatedData)
     {
+        
+        // каждая функция должна ровно одно действие. не должно быть таких жирных смешанных классов.
+        // как первый шаг, создать допметоды прямо тут внутри класса.
+        
         Denomination::findOrFail($validatedData['denomination_id']);
 
         //TODO добавить проверку еще и на уровне БД - составной уникальный ключ
@@ -24,7 +28,8 @@ class CompositionService
         }
 
         $composition = new Composition;
-
+ 
+        // заменить на функцию fill - наполнить данные.
         foreach ($validatedData as $key => $value) {
             $composition->$key = $value;
         }
