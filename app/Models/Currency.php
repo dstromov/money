@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Currency extends Model
 {
     /** @use HasFactory<\Database\Factories\CurrencyFactory> */
+    // TOD писать всегда их. В частности тут писать в явном виде, почему код закомментирован
     //use HasFactory;
     use SoftDeletes;
 
