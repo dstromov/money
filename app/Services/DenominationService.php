@@ -11,11 +11,7 @@ class DenominationService
     {
         $denomination = new Denomination;
         $denomination->currency_id = $currency->id;
-
-        foreach ($validatedData as $key => $value) {
-            $denomination->$key = $value;
-        }
-
+        $denomination->fill($validatedData);
         $validateForDoulble = self::validateForDoulble($currency, $denomination);
 
         if ($validateForDoulble['status'] === 'failure') {
@@ -39,11 +35,7 @@ class DenominationService
 
         $denomination = Denomination::findOrFail($denominationId);
         $currency = Currency::find($denomination->currency->id);
-
-        foreach ($validatedData as $key => $value) {
-            $denomination->$key = $value;
-        }
-
+        $denomination->fill($validatedData);
         $validateForDoulble = self::validateForDoulble($currency, $denomination, true);
 
         if ($validateForDoulble['status'] === 'failure') {
