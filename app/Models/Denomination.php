@@ -11,9 +11,9 @@ class Denomination extends Model
 {
     use SoftDeletes;
 
-    protected $guarded = [];
-    
-    
+    protected $fillable = ['currency_id', 'name', 'type', 'ratio'];
+
+
     public function currency(): BelongsTo
     {
         return $this->belongsTo(Currency::class);
@@ -26,4 +26,3 @@ class Denomination extends Model
     }
 
 }
- 

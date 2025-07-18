@@ -14,7 +14,7 @@ class Currency extends Model
     //use HasFactory;
     use SoftDeletes;
 
-    protected $guarded = [];
+    protected $fillable = ['full_name', 'label', 'country', 'rate'];
 
     public function denominations(): HasMany
     {

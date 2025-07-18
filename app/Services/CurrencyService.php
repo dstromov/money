@@ -11,9 +11,11 @@ class CurrencyService
     {
         $currency = new Currency;
 
-        foreach ($validatedData as $key => $value) {
-            $currency->$key = $value;
-        }
+//        foreach ($validatedData as $key => $value) {
+//            $currency->$key = $value;
+//        }
+
+
 
         $currency->save();
 

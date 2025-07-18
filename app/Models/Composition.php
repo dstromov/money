@@ -17,14 +17,15 @@ class Composition extends Model
 
     // в явном виде прописывать с чем ассоциируется таблица.
 
-    
+
     use SoftDeletes;
 
 
     // лучше не разрешать обновление вообще всех полей, т.к. так можно id обновить.
     // лучше использовать fillable и перечислить в явном виде поля.
-    protected $guarded = [];
-    
+
+    protected $fillable = ['denomination_id', 'value', 'count'];
+
     public function denomination(): BelongsTo
     {
         // правильно, но нужно добавить ключи - в явном виде ключи.
