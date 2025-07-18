@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Models\Currency;
 use App\Models\Denomination;
 
-class DenominationService 
+class DenominationService
 {
     public static function store(Currency $currency, Array $validatedData): Array
     {
@@ -20,25 +20,18 @@ class DenominationService
 
         if ($validateForDoulble['status'] === 'failure') {
             return $validateForDoulble;
-        }        
-                
+        }
+
         $denomination->save();
 
         return ['status' => 'success'];
     }
 
-    // public static function show(Currency $currency)
-    // {
-    //     // возвращаетм модель денег со вложенными номиналами
-    //     // TODO добавить сортировку по ratio
-    //     return [$currency, $currency->denominations][0];
-    // }
-
     public static function update(Array $validatedData)
     {
         $denominationId = $validatedData['id'];
         unset($validatedData['id']);
-        
+
         if (!$validatedData){
             //TODO переписать на выброс исключения
             return ['message' => 'Не передано ни одного поля для изменения', 'status' => 'failure'];
@@ -55,7 +48,7 @@ class DenominationService
 
         if ($validateForDoulble['status'] === 'failure') {
             return $validateForDoulble;
-        }               
+        }
 
         $denomination->save();
 
@@ -76,16 +69,16 @@ class DenominationService
     {
     //TODO можно ли сделать этот метод нестатичесим? или и так норм?
     //TODO перенести проверку в валидацию запроса
-    
+
         $editedDenominationId = 0; // для случая добавление позиции
         if ($IsEdition) $editedDenominationId = $denomination->id; // редактирование позиции
-        
+
         $existedDenomination = Denomination::where('currency_id', $currency->id)
             ->where('name', $denomination->name)
             ->where('type', $denomination->type)
             ->whereNot('id', $editedDenominationId)
             ->get('id'); // специально в проверке нет поля ratio, чтобы не задвоить какой-либо номинал с разным соотношением;
-        
+
         if ($existedDenomination->count() !== 0) {
             //TODO переписать на выбрасывание исключений
             return ['message' => 'модель с таким названием и типом уже есть', 'status' => 'failure'];
@@ -100,7 +93,7 @@ class DenominationService
 
         if ($existedRatio->count() !== 0) {
             return ['message' => 'такая модель уже есть', 'status' => 'failure'];
-        }  
+        }
 
         return ['status' => 'success'];
     }

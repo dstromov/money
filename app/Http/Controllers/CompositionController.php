@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-// use App\Models\Composition;
-use App\Models\Currency;
+
 use App\Http\Requests\Compositions\DestroyCompositionRequest;
 use App\Http\Requests\Compositions\StoreCompositionRequest;
 use App\Http\Requests\Compositions\UpdateCompositionRequest;
 use App\Http\Requests\Compositions\UpdateCountCompositionRequest;
 use App\Services\CompositionService;
 use App\Services\RecountService;
-use Illuminate\Http\Request;
 
 
 class CompositionController extends Controller
@@ -21,12 +19,12 @@ class CompositionController extends Controller
         $validatedData = $request->validated();
 
         $result = CompositionService::store($validatedData);
-        
+
         if ($result['status'] === 'failure') {
             return $result['message'];
         }
 
-        $currency = $result;        
+        $currency = $result;
 
         return redirect()->route('showCurrencyWithDenominations', ['currency' => $currency->id]);
     }
@@ -38,9 +36,9 @@ class CompositionController extends Controller
 
         if ($result['status'] === 'failure') {
             return $result['message'];
-        }        
-        
-        $currency = $result;    
+        }
+
+        $currency = $result;
         RecountService::recount($currency);
 
         return redirect()->route('showCurrencyWithDenominations', ['currency' => $currency->id]);
@@ -54,7 +52,7 @@ class CompositionController extends Controller
 
         return redirect()->route('showCurrencyWithDenominations', $currency->id);
     }
-    
+
     public function updateCount(UpdateCountCompositionRequest $request)
     {
         $validatedData = $request->validated();

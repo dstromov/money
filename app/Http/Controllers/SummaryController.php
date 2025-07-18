@@ -22,23 +22,16 @@ class SummaryController extends Controller
 
         $currenciesIds =[];
         foreach ($comp as $value) {
-            $currenciesIds[] = $value->denomination->currency_id;          
+            $currenciesIds[] = $value->denomination->currency_id;
         }
 
-        $countriesInCollection = Currency::whereIn('id',$currenciesIds)->get('country');
+        $countriesInCollection = Currency::whereIn('id', $currenciesIds)->get('country');
 
         return ['data' => [
-            'sumCurrencies' => $sumCurrencies, 
-            'compositionUniqueCount' => $compositionUniqueCount, 
+            'sumCurrencies' => $sumCurrencies,
+            'compositionUniqueCount' => $compositionUniqueCount,
             'lastEditedComposition' => $lastEditedComposition,
             'countriesInCollection' => $countriesInCollection,
             ]];
-        
-
-
-
-
-        
-        
     }
 }

@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Models\Currency;
 
 
-class CurrencyService 
+class CurrencyService
 {
     public static function store(Array $validatedData): Currency
     {
@@ -20,18 +20,12 @@ class CurrencyService
         return $currency;
     }
 
-    // public static function show(Currency $currency): Currency
-    // {
-    //     // действие вынесено в сервис для однообразия с другими сервисам
-    //     return $currency;
-    // }
-
     public static function update(Currency $currency, Array $validatedData): Array
     {
         if (!$validatedData){
             return ['status' => 'failure','massage' => 'Не передано ни одного поля для переименования']; //TODO переписать на выброс исключения
         }
-        
+
         foreach ($validatedData as $key => $value) {
             $currency->$key = $value;
         }
@@ -42,7 +36,7 @@ class CurrencyService
     }
 
     public static function destroy(Currency $currency)
-    {        
+    {
         $currency->delete();
     }
 

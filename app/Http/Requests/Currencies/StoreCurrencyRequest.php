@@ -25,25 +25,23 @@ class StoreCurrencyRequest extends FormRequest
         return [
             'full_name' => [
                 'required',
-                // 'unique:currencies',
                 Rule::unique('currencies')->withoutTrashed(),
                 'min:3',
-                'max:255'],
-            
-            'label' => ['required',
-                // 'unique:currencies',
+                'max:255'
+            ],
+            'label' => [
+                'required',
                 Rule::unique('currencies')->withoutTrashed(),
                 'alpha:ascii',
                 'min:3',
-                'max:255'],
-
-
-            'country' => ['required',
-                // 'unique:currencies',
+                'max:255'
+            ],
+            'country' => [
+                'required',
                 Rule::unique('currencies')->withoutTrashed(),
                 'min:3',
-                'max:255'],
-
+                'max:255'
+            ],
             'rate' => 'numeric|filled|gt:0',
         ];
     }
