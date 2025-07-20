@@ -14,8 +14,6 @@ class CurrencyController extends Controller
 {
     public function index()
     {
-
-
         //TODO добавить пагинацию и фильтры
         return Currency::all()->sortBy('country')->toResourceCollection();
     }
