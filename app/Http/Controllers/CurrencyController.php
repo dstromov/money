@@ -9,7 +9,6 @@ use App\Http\Resources\CurrencyCollection;
 use App\Models\Currency;
 use App\Services\CurrencyService;
 use App\Services\RecountService;
-use Illuminate\Http\Request;
 
 class CurrencyController extends Controller
 {
@@ -33,7 +32,7 @@ class CurrencyController extends Controller
     }
 
     public function update(Currency $currency, RenameCurrencyRequest $request)
-    {   
+    {
         $validatedData = $request->validated();
         $result = CurrencyService::update($currency, $validatedData);
 
@@ -52,9 +51,9 @@ class CurrencyController extends Controller
     }
 
     public function updateRate(Currency $currency, UpdateRateCurrencyRequest $request)
-    {   
+    {
         $validatedData = $request->validated();
-        
+
         CurrencyService::update($currency, $validatedData);
         RecountService::recount($currency);
 
